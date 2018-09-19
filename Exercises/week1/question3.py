@@ -1,15 +1,26 @@
-import hashlib
 import ecdsa
-from . import question1
 
+# sk is private key, vk is public key
+def generateSig(_message):
+    sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)
+    vk = sk.get_verifying_key()
+    sig = sk.sign(_message.encode('utf-8'))
+    return sig, vk
 
-blockchainString = "Blockchain Technology"
+def signWithPrivateKey(_message, sk):
+    vk = sk.get_verifying_key()
+    sig = sk.sign(_message.encode('utf-8'))
+    return sig, vk
 
+def verifyExisting(_message, _public_key, _sig):
+    vk = ecdsa.VerifyingKey.from_string(bytes.fromhex(_public_key), curve=ecdsa.SECP256k1)
+    vk.verify(bytes.fromhex(_sig), _message)  # True
 
-# def generateKeyPairs():
-#     ecdsa.SigningKey
-
+def generateVerifyKeyPairs():
+    message = "Blockchain Technology"
+    sig, vk = generateSig(message)
+    return vk.verify(sig, message.encode('utf-8'))
 
 
 if __name__=='__main__':
-    pass
+    print(generateVerifyKeyPairs())

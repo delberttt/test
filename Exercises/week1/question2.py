@@ -16,10 +16,10 @@ def generateRandomByteStrings():
         toReturn += choice
     return bytes(toReturn.encode('utf-8'))
 
-def getDigest(number, message):
+def getDigest(message):
     m = hashlib.sha512()
     m.update(message)
-    return m.hexdigest()[0:int(number)]
+    return m.hexdigest()
 
 
 def findCollision(numberOfBits, message):
@@ -29,7 +29,7 @@ def findCollision(numberOfBits, message):
     stringsDone = { message:1 }  # keep a list of strings already checked
     number = numberOfBits/8
 
-    toCompare = getDigest(number, message)
+    toCompare = getDigest(message)[0:int(number)]
 
     print("looking for", toCompare, "...")
 
@@ -39,9 +39,9 @@ def findCollision(numberOfBits, message):
         while randomString in stringsDone:
             randomString = generateRandomByteStrings()
 
-        if getDigest(number, randomString) == toCompare:
+        if getDigest(randomString)[0:int(number)] == toCompare:
             print("Found", randomString)
-            print("with bytes", getDigest(number, randomString))
+            print("with bytes", getDigest(randomString)[0:int(number)])
             break
         stringsDone[randomString] = 1
 
@@ -68,9 +68,9 @@ def findPreimage(numberOfBits, message):
         while randomString in stringsDone:
             randomString = generateRandomByteStrings()
 
-        if getDigest(number, randomString) == toCompare:
+        if getDigest(randomString)[0:int(number)] == toCompare:
             print("Found", randomString)
-            print("with bytes", getDigest(number, randomString))
+            print("with bytes", getDigest(randomString)[0:int(number)])
             break
         stringsDone[randomString] = 1
 
