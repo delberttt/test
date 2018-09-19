@@ -40,18 +40,16 @@ class Transaction:
     def validate(self, _transaction):
         # Validate transaction correctness.
         # Can be called within from_json()
+        data = json.loads(_transaction)
 
-
-
-        public_key = _transaction['Sender']
+        public_key = data['Sender']
         sig = _transaction['Signature']
 
         # extract signature
-
+        _transaction["Signature"] = ""
+        toVerify = str(_transaction)
 
         # verify with public key
-
-
         return verifyExisting(toVerify, public_key, sig)
 
 
