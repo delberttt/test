@@ -4,9 +4,11 @@ from question3 import *
 
 
 # variables
-sender_private_key = ecdsa.SigningKey.generate()
+sender_private_key = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
 sender_public_key = sender_private_key.get_verifying_key()
-receiver_public_key = "arbitrary number"
+
+receiver_private_key = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
+receiver_public_key = receiver_private_key.get_verifying_key()
 
 amount = 10000
 comment = "testRun"
@@ -15,8 +17,8 @@ comment = "testRun"
 class Transaction:
     def __init__(self, _sender_public_key, _receiver_public_key, _amount, _comment):
         self.data = {
-            "Sender": str(_sender_public_key),
-            "Receiver": str(_receiver_public_key),
+            "Sender": _sender_public_key.to_string().hex(),
+            "Receiver": _receiver_public_key.to_string().hex(),
             "Amount": _amount,
             "Comment": _comment,
             "Signature": ""

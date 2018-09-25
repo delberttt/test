@@ -3,7 +3,7 @@ import ecdsa
 
 # sk is private key, vk is public key
 def generateSig(_message):
-    sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)
+    sk = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
     vk = sk.get_verifying_key()
     sig = sk.sign(_message.encode('utf-8'))
     return sig, vk
