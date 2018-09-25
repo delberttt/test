@@ -2,66 +2,75 @@ import json
 import ecdsa
 from question3 import *
 
-# This is the data, d
+
+# variables
+sender_private_key = ecdsa.SigningKey.generate()
+sender_public_key = sender_private_key.get_verifying_key()
+receiver_public_key = "arbitrary number"
+
+amount = 10000
+comment = "testRun"
+
+# Transaction class
 class Transaction:
-    def __init__(self, _sender, _receiver, _amount, _comment):
+    def __init__(self, _sender_public_key, _receiver_public_key, _amount, _comment):
         self.data = {
-            "Sender": _sender,
-            "Receiver": _receiver,
+            "Sender": str(_sender_public_key),
+            "Receiver": str(_receiver_public_key),
             "Amount": _amount,
             "Comment": _comment,
-            "Signature": "",
+            "Signature": ""
         }
-        self.jsonForm = ""
+        self.sender = _sender_public_key
+        self.receiver = receiver_public_key
+
 
     @classmethod
-    def new(cls):
-        # takes in a private key and signs the object with it, discarding after
-        pass
+    def new(cls, _from, _to, _amount, _comment, _private_key):
+        # Instantiates object from passed values
+        t = Transaction(_from, _to, _amount, _comment)
 
-    def to_json(self):
+        # sign and return obj
+        t.sign(_private_key)
+        return t
+
+    def to_json(self, _data):
         # Serializes object to JSON string
-        self.jsonForm = str(self.data)
-        return self.jsonForm
+        return json.dumps(_data)
 
     @classmethod
-    def from_json(self, _jsonBlock):
+    def from_json(cls, _data):
         # Instantiates/Deserializes object from JSON string
-        self.data = json.loads(_jsonBlock)
-        return self.data
+        return json.loads(_data)
 
     def sign(self, _private_key):
         # Sign object with private key passed
         # That can be called within new()
-        sig, vk = signWithPrivateKey(self.to_json(), _private_key)
-        self.data['Signature'] = sig
-        return self.to_json(), vk
 
-    def validate(self, _transaction):
+        # sign data with private key
+        sig = signWithPrivateKey(_message=self.to_json(self.data), sk=_private_key)
+
+        # add signature to existing data
+        self.data["Signature"] = sig
+        return self.data, sig
+
+    def validate(self):
         # Validate transaction correctness.
         # Can be called within from_json()
-        data = json.loads(_transaction)
+        # remove signature
+        sig = self.data["Signature"]
+        self.data["Signature"] = ""
 
-        public_key = data['Sender']
-        sig = _transaction['Signature']
-
-        # extract signature
-        _transaction["Signature"] = ""
-        toVerify = str(_transaction)
-
-        # verify with public key
-        return verifyExisting(toVerify, public_key, sig)
-
+        # verify data without signature in it
+        vk = self.sender
+        return verifyExisting(_message=self.to_json(self.data), _public_key=vk, _sig=sig)
 
     def __eq__(self, other):
         # Check whether transactions are the same
-        # If you're using this, you're wrong
-        return False
+        return self.data == other.data
 
 
-if __name__=='__main__':
-    t = Transaction("clemence", "gio", "10 000", "test")
-    sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)
-    data, vk = t.sign(sk)
-    print(t.validate(data))
-
+if __name__=="__main__":
+    t = Transaction.new(sender_public_key, receiver_public_key, amount, comment, sender_private_key)
+    print(t.data)
+    print(t.validate())
