@@ -23,9 +23,6 @@ class Transaction:
             "Comment": _comment,
             "Signature": ""
         }
-        self.sender = _sender_public_key
-        self.receiver = receiver_public_key
-
 
     @classmethod
     def new(cls, _from, _to, _amount, _comment, _private_key):
@@ -56,6 +53,9 @@ class Transaction:
         self.data["Signature"] = sig
         return self.data, sig
 
+    def getVKFromData(self, _person):
+        return ecdsa.VerifyingKey.from_string(bytes.fromhex(self.data[_person]))
+
     def validate(self):
         # Validate transaction correctness.
         # Can be called within from_json()
@@ -64,7 +64,7 @@ class Transaction:
         self.data["Signature"] = ""
 
         # verify data without signature in it
-        vk = self.sender
+        vk = self.getVKFromData("Sender")
         return verifyExisting(_message=self.to_json(self.data), _public_key=vk, _sig=sig)
 
     def __eq__(self, other):
@@ -74,5 +74,5 @@ class Transaction:
 
 if __name__=="__main__":
     t = Transaction.new(sender_public_key, receiver_public_key, amount, comment, sender_private_key)
-    print(t.data)
+    # print(t.data)
     print(t.validate())
