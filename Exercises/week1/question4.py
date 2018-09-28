@@ -65,7 +65,9 @@ class Transaction:
 
         # verify data without signature in it
         vk = self.getVKFromData("Sender")
-        return verifyExisting(_message=self.to_json(self.data), _public_key=vk, _sig=sig)
+        result = verifyExisting(_message=self.to_json(self.data), _public_key=vk, _sig=sig)
+        self.data["Signature"] = sig
+        return result
 
     def __eq__(self, other):
         # Check whether transactions are the same
