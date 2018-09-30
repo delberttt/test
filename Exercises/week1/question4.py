@@ -1,6 +1,6 @@
 import json
 import ecdsa
-from question3 import *
+from .question3 import *
 
 
 # variables
@@ -12,6 +12,7 @@ receiver_public_key = receiver_private_key.get_verifying_key()
 
 amount = 10000
 comment = "testRun"
+
 
 # Transaction class
 class Transaction:

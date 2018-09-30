@@ -233,8 +233,7 @@ def verify_proof(entry, proof, root):
     return False
 
 
-if __name__=='__main__':
-
+def createAndVerify(_number):
     randomDict = {}
     sender = generateRandomString(12)
     randomDict[sender] = 1
@@ -242,7 +241,7 @@ if __name__=='__main__':
     n = MerkleNode("Leaf", json.dumps({"Sender": sender}))
     m = MerkleTree(n)
 
-    for i in range(300):
+    for i in range(_number):
         while sender in randomDict:
             sender = generateRandomString(12)
         randomDict[sender] = 1
@@ -258,6 +257,12 @@ if __name__=='__main__':
     print("valid verification:", verify_proof(n, m.get_proof(n), m.root))
 
     # this should be false
-    print("invalid verification:", verify_proof(n, m.get_proof(n) + [MerkleNode("", json.dumps({"Sender": "attacker"}))], m.root))
+    print("invalid verification:",
+          verify_proof(n, m.get_proof(n) + [MerkleNode("", json.dumps({"Sender": "attacker"}))], m.root))
 
     print("------------ REPORT END ----------------")
+
+
+if __name__=='__main__':
+    createAndVerify(300)
+
