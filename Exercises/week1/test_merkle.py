@@ -2,8 +2,7 @@ from Exercises.week1.helperFunctions import generateRandomString
 from Exercises.week1.merkleNode import MerkleNode
 from Exercises.week1.merkleTree import MerkleTree, verify_proof
 import json
-
-
+import time
 
 
 def createAndVerify(_number):
@@ -46,5 +45,8 @@ def createAndVerify(_number):
     print("------------ REPORT END ----------------")
 
 
-if __name__=='__main__':
-    createAndVerify(1000)
+if __name__ == '__main__':
+    start_time = time.time()
+    createAndVerify(300)
+    end_time = time.time()
+    print("Total time taken:", end_time - start_time)
