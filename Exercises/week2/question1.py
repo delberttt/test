@@ -1,4 +1,6 @@
-from Exercises.week1 import question5, question4
+from Exercises.week1 import question4
+from Exercises.week1.merkleNode import MerkleNode
+from Exercises.week1.merkleTree import MerkleTree
 import time
 import json
 import ecdsa
@@ -19,24 +21,24 @@ class Block:
         # check if root has been initialised
         if _root is None:
             # create merkle node
-            default_node = question5.MerkleNode(_type="Leaf", _transaction="fake")
+            default_node = MerkleNode(_type="Leaf", _transaction="fake")
 
             # create merkle tree
-            t = question5.MerkleTree(_node=default_node)
+            t = MerkleTree(_node=default_node)
 
             self.merkle_tree = t
             self.root = t.root
             self.default_root = True
         else:
-            self.merkle_tree = question5.MerkleTree(_node=_root)
+            self.merkle_tree = MerkleTree(_node=_root)
 
     # adds to data within the block, insecure as question does not require "signing"
     def add(self, _sender_public_key, _receiver_public_key, _amount, _comment):
         t = question4.Transaction(_sender_public_key, _receiver_public_key, _amount, _comment)
-        node = question5.MerkleNode(_type="Leaf", _transaction=json.dumps(t.data))
+        node = MerkleNode(_type="Leaf", _transaction=json.dumps(t.data))
 
         if self.default_root:  # default root in use, replace.
-            self.merkle_tree = question5.MerkleTree(_node=node)
+            self.merkle_tree = MerkleTree(_node=node)
             self.root = node
             self.default_root = False
         else:
