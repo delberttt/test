@@ -13,7 +13,7 @@ def createAndVerify(_number):
     n = MerkleNode("Leaf", json.dumps({"Sender": sender}))
     m = MerkleTree(n)
 
-    verify_numbers = [0, 1, 2]
+    verify_numbers = [0, 1, 2, 6, 21, 30, 102]
     to_verify = [n]
 
     for i in range(_number):
@@ -39,8 +39,8 @@ def createAndVerify(_number):
         print("valid verification:", verify_proof(i, m.get_proof(i), m.root))
 
     # this should be false
-    # print("invalid verification:",
-    #       verify_proof(n, m.get_proof(n) + [MerkleNode("", json.dumps({"Sender": "attacker"}))], m.root))
+    print("invalid verification:",
+          verify_proof(n, m.get_proof(n) + [(MerkleNode("", json.dumps({"Sender": "attacker"})), 0)], m.root))
 
     print("------------ REPORT END ----------------")
 
