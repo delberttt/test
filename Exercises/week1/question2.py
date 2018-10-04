@@ -55,7 +55,7 @@ def findCollision(numberOfBits, message):
 def findPreimage(numberOfBits, message):
     starttime = time.time()
 
-    stringsDone = { message:1 }  # keep a list of strings already done
+    stringsDone = { message:1 }  # keep a hashmap of strings already done
     number = numberOfBits/8
 
     toCompare = message

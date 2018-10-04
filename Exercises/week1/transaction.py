@@ -1,14 +1,12 @@
 import json
+from Exercises.week1.keyPair import GenerateKeyPair, signWithPrivateKey, verifyExisting
 import ecdsa
-from .question3 import *
 
 
 # variables
-sender_private_key = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
-sender_public_key = sender_private_key.get_verifying_key()
+sender_private_key, sender_public_key = GenerateKeyPair()
 
-receiver_private_key = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
-receiver_public_key = receiver_private_key.get_verifying_key()
+receiver_private_key, receiver_public_key = GenerateKeyPair()
 
 amount = 10000
 comment = "testRun"
