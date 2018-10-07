@@ -1,6 +1,13 @@
 import ecdsa
 
 
+# For purpose of creating a new user
+def GenerateKeyPair():
+    private_key = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
+    public_key = private_key.get_verifying_key()
+    return private_key, public_key
+
+
 # sk is private key, vk is public key
 def generateSig(_message):
     sk = ecdsa.SigningKey.generate(curve=ecdsa.NIST192p)
@@ -24,5 +31,6 @@ def generateVerifyKeyPairs():
     # return vk.verify(sig, message.encode('utf-8'))
     return verifyExisting(message, vk, sig)
 
-if __name__=='__main__':
-    print(generateVerifyKeyPairs())
+
+# if __name__=='__main__':
+#     print(generateVerifyKeyPairs())
