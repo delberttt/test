@@ -5,6 +5,7 @@ from Exercises.week1.helperFunctions import simpleLOD
 from Exercises.week1.preImage import getDigest, findPreimage
 from Exercises.week1.transaction import Transaction
 from Exercises.week1.keyPair import GenerateKeyPair
+from Exercises.week3.globalState import State
 from multiprocessing import Process, Queue
 
 
@@ -29,19 +30,27 @@ class Block:
     def __init__(self, _transaction_list, _prev_header=None, _prev_block=None):
         self.prev_header = _prev_header  # hash of previous header
         self.timestamp = str(time.time())  # timestamp of block
-        self.merkle_tree = createTreeFromTx(_transaction_list)  # build merkle tree from transaction list
+        self.merkle_tree = None
 
         self.prev_block = _prev_block
-        self.nonce = None  # random number needed to generate PoW
-        self.header = None  # header has to be created after nonce is found
+        self.state = State()
+        self.nonce = "default_nonce"
+        self.header = "genisys"
 
-        if _prev_header is None:
-            # assume that this is a genisys block
-            # create nonce
-            self.nonce = "default_nonce"
+        if _prev_header is not None:
+            self.nonce = None  # random number needed to generate PoW
+            self.prev_header = None  # header has to be created after nonce is found
+            # init state from prev
+            self.state = State(_prev_block.state)
 
-            # build genisys block
-            self.prev_header = "genisys"
+        tx_list = []
+        for tx in _transaction_list:
+            # invalid transactions will be lost here
+            if self.state.changeState(tx):
+                tx_list.append(tx)
+
+        # build merkle tree from transaction list
+        self.merkle_tree = createTreeFromTx(tx_list)
 
     # This should be called by miners as the block comes in
     # Validate checks that the nonce is proper
@@ -76,6 +85,9 @@ class Block:
 
     def setPrevBlock(self, _block):
         self.prev_block = _block
+
+    def checkTransactionInBlock(self, _transaction):
+        return _transaction in self.merkle_tree.leaf_nodes
 
 
 # Test with proper transactions in block
