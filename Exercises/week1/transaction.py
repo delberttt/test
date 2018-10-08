@@ -20,6 +20,7 @@ class Transaction:
             "Receiver": _receiver_public_key.to_string().hex(),
             "Amount": _amount,
             "Comment": _comment,
+            "Reward": False,
             "Signature": ""
         }
 
@@ -29,6 +30,14 @@ class Transaction:
         t = Transaction(_from, _to, _amount, _comment)
 
         # sign and return obj
+        t.sign(_private_key)
+        return t
+
+    @classmethod
+    def newReward(cls, _miner, _private_key):
+        t = Transaction(_miner, _miner, 100, "Reward Block")
+        t.data["Reward"] = True
+
         t.sign(_private_key)
         return t
 
