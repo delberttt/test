@@ -4,17 +4,18 @@ import ecdsa
 
 
 # variables
-sender_private_key, sender_public_key = GenerateKeyPair()
-
-receiver_private_key, receiver_public_key = GenerateKeyPair()
-
-amount = 10000
-comment = "testRun"
+# sender_private_key, sender_public_key = GenerateKeyPair()
+#
+# receiver_private_key, receiver_public_key = GenerateKeyPair()
+#
+# amount = 10000
+# comment = "testRun"
 
 
 # Transaction class
 class Transaction:
     def __init__(self, _sender_public_key, _receiver_public_key, _amount, _comment):
+        self.version = 1.0
         self.data = {
             "Sender": _sender_public_key.to_string().hex(),
             "Receiver": _receiver_public_key.to_string().hex(),
@@ -64,6 +65,7 @@ class Transaction:
     def getVKFromData(self, _person):
         return ecdsa.VerifyingKey.from_string(bytes.fromhex(self.data[_person]))
 
+    # only this is supposed to be touched once client inits using new or newReward
     def validate(self):
         # Validate transaction correctness.
         # Can be called within from_json()
@@ -81,8 +83,11 @@ class Transaction:
         # Check whether transactions are the same
         return self.data == other.data
 
+    def __str__(self):
+        return self.to_json(self.data)
 
-if __name__=="__main__":
-    t = Transaction.new(sender_public_key, receiver_public_key, amount, comment, sender_private_key)
-    # print(t.data)
-    print(t.validate())
+
+# if __name__=="__main__":
+#     t = Transaction.new(sender_public_key, receiver_public_key, amount, comment, sender_private_key)
+#     # print(t.data)
+#     print(t.validate())
