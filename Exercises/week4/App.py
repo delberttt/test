@@ -1,28 +1,34 @@
 from flask import Flask, request
 from Exercises.week4 import handlers
+from Exercises.week3 import miner
+from Exercises.week1 import keyPair
+
+import ecdsa
+
 
 app = Flask(__name__)
 
 
 internal_storage = {
-    "Public_key": "Default",
-    "Private_key": "Default",
-    "Neighbour_nodes": []
+    "Public_key": None,
+    "Private_key": None,
+    "Neighbour_nodes": [],
+    "User": None,
 }
 
 
 @app.route('/')
 def homePage():
-    welcome = "Welcome to KDCoin!<br>" \
-           "Statistics:<br><br>" \
-           "Currently logged in as: {}<br>" \
-           "Neighbour nodes registered: {}<br>" \
-           "".format(
-        internal_storage["Public_key"],
-        internal_storage["Neighbour_nodes"])
-
-    if internal_storage["Public_key"] == "Default":
+    if internal_storage["Public_key"] is None:
         welcome = "Please log in:"
+    else:
+        welcome = "Welcome to KDCoin!<br>" \
+               "Statistics:<br><br>" \
+               "Currently logged in as: {}<br>" \
+               "Neighbour nodes registered: {}<br>" \
+               "".format(
+            internal_storage["Public_key"].to_string().hex(),
+            internal_storage["Neighbour_nodes"])
 
     loginPage = open("Mainpage.html").read()
 
@@ -31,8 +37,15 @@ def homePage():
 
 @app.route('/login', methods=['POST'])
 def loginAPI():
-    internal_storage["Public_key"] = request.values.get("pub_key")
-    internal_storage["Private_key"] = request.values.get("priv_key")
+    pub_hex = request.values.get("pub_key")
+    pub_key = ecdsa.SigningKey(bytes.fromhex(pub_hex))
+    internal_storage["Public_key"] = pub_key
+
+    priv_hex = request.values.get("pub_key")
+    priv_key = ecdsa.VerifyingKey(bytes.fromhex(pub_hex))
+    internal_storage["Public_key"] = pub_key
+
+    internal_storage["User"] = miner.Miner.new(internal_storage["Public_key"])
 
     # re-routes back to homepage
     return homePage()
@@ -40,15 +53,28 @@ def loginAPI():
 
 @app.route('/new')
 def newUser():
-    pub, priv = handlers.createNewKeyPair()
+    priv, pub = keyPair.GenerateKeyPair()
+    internal_storage["Private_key"] = priv
+    internal_storage["Public_key"] = pub
+
     return "Public Key: {}<br>" \
            "Private Key: {}<br>" \
-           "Please save these 2 (They are unrecoverable)".format(pub, priv)
+           "Please save these 2 (They are unrecoverable)".\
+        format(pub.to_string().hex(), priv.to_string().hex())
+
+
+@app.route('/blockchain')
+def getCurrentBlockchain():
+    # this API is here for other miners joining in to request the current blockchain
+    return internal_storage["User"].blockchain
 
 
 @app.route('/pay/<recv_addr>')
 def payTo(recv_addr):
     # todo: handler to pay from sender to recv
+    sender = internal_storage["Public_key"]
+    recv = recv_addr
+
     pass
 
 

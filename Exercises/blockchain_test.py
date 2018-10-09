@@ -9,8 +9,8 @@ from Exercises.week1.transaction import Transaction
 class TestBlockchain(unittest.TestCase):
     def test_SimpleE2E(self):
         # create parties
-        sender_pub, sender_priv = GenerateKeyPair()
-        recv_pub, recv_priv = GenerateKeyPair()
+        sender_priv, sender_pub = GenerateKeyPair()
+        recv_priv, recv_pub = GenerateKeyPair()
 
         # create transaction2
         tx1 = Transaction(

@@ -29,7 +29,7 @@ class Miner:
         pub_key = _public_key
         priv_kev = ""
         if _public_key is None:
-            pub_key, priv_kev = GenerateKeyPair()
+            priv_kev, pub_key = GenerateKeyPair()
 
         m = Miner(_public_key=pub_key, _blockchain=_blockchain)
 

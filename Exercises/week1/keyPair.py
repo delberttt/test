@@ -33,4 +33,13 @@ def generateVerifyKeyPairs():
 
 
 # if __name__=='__main__':
-#     print(generateVerifyKeyPairs())
+#     priv, pub = GenerateKeyPair()
+#     print(pub.to_string().hex())
+#     print(priv.to_string().hex())
+#
+#     nextA = ecdsa.SigningKey.from_string(priv.to_string())
+#     nextB = ecdsa.VerifyingKey.from_string(pub.to_string())
+#
+#     print(nextA.to_string().hex())
+#     print(nextB.to_string().hex())
+
