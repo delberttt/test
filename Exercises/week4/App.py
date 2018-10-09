@@ -42,8 +42,8 @@ def loginAPI():
     internal_storage["Public_key"] = pub_key
 
     priv_hex = request.values.get("pub_key")
-    priv_key = ecdsa.VerifyingKey(bytes.fromhex(pub_hex))
-    internal_storage["Public_key"] = pub_key
+    priv_key = ecdsa.VerifyingKey(bytes.fromhex(priv_hex))
+    internal_storage["Private_key"] = priv_key
 
     internal_storage["User"] = miner.Miner.new(internal_storage["Public_key"])
 
