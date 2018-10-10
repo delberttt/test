@@ -1,7 +1,7 @@
-from flask import Flask, request
-from KDCoin import handlers
-from KDCoin import miner
-from KDCoin import keyPair
+import Flask, request
+import handlers
+import miner
+import keyPair
 
 import ecdsa
 
