@@ -6,7 +6,12 @@ from KDCoin.helperFunctions import hashItem
 class State:
     def __init__(self, _prev_state=None):
         self.prev_state = _prev_state
-        self.data = {}
+        self.data = {
+            "Tx_global_list": [],
+            "Balance": {},
+            "Current_block": None,
+            "Blockchain_length": 0
+        }
         self.header = ""
 
         # prev state None should only happen in first block
@@ -22,8 +27,8 @@ class State:
         if _transaction.data["Reward"]:
             # reward block, immediately award
             if recv_addr not in self.data:
-                self.data[recv_addr] = 0
-            self.data[recv_addr] += amount
+                self.data["Balance"][recv_addr] = 0
+            self.data["Balance"][recv_addr] += amount
 
         if sendr_addr not in self.data:
             return False
@@ -40,10 +45,10 @@ class State:
         recv_addr = _transaction.data["Receiver"]
         amount = _transaction.data["Amount"]
 
-        self.data[sendr_addr] -= amount
+        self.data["Balance"][sendr_addr] -= amount
         if recv_addr not in self.data:
-            self.data[recv_addr] = 0
-        self.data[recv_addr] += amount
+            self.data["Balance"][recv_addr] = 0
+        self.data["Balance"][recv_addr] += amount
         self.header = hashItem(self.header + hashItem(_transaction))
 
     # verify that this state was indeed created from prev_state and

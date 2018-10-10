@@ -31,6 +31,7 @@ class Block:
         self.prev_header = _prev_header  # hash of previous header
         self.timestamp = str(time.time())  # timestamp of block
         self.merkle_tree = None
+        self.tx_list = _transaction_list
 
         self.prev_block = _prev_block
         self.state = State()
