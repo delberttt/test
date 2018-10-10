@@ -1,4 +1,5 @@
 from keyPair import GenerateKeyPair
+import blockChain, block, transaction
 
 
 # todo: Idea is for every miner to have its own flask app
@@ -18,17 +19,23 @@ class Miner:
         self.balance = 0
         self.address = _public_key
 
-    @classmethod
-    def new(cls, _public_key=None, _blockchain=None):
-        pub_key = _public_key
-        priv_kev = ""
-        if _public_key is None:
-            priv_kev, pub_key = GenerateKeyPair()
-
-        m = Miner(_public_key=pub_key, _blockchain=_blockchain)
-
-        # returns obj, public key and private key.
-        return m, pub_key, priv_kev
+        # if this is ever invoked, it must be the first block
+        # of the first miner
+        if self.blockchain is None:
+            # create new blockchain with empty data
+            self.blockchain = blockChain.Blockchain(
+                block.Block(
+                    _transaction_list=[
+                        # initial empty transaction
+                        transaction.Transaction(
+                            self.address,
+                            self.address,
+                            self.balance,
+                            "Init Tx"
+                        )
+                    ]
+                )
+            )
 
     def broadcast(self, _type, _data):
         if _type == "Block":
