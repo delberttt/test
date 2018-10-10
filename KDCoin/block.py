@@ -1,11 +1,11 @@
 import time
-from Exercises.week1.merkleNode import MerkleNode
-from Exercises.week1.merkleTree import MerkleTree
-from Exercises.week1.helperFunctions import simpleLOD
-from Exercises.week1.preImage import getDigest, findPreimage
-from Exercises.week1.transaction import Transaction
-from Exercises.week1.keyPair import GenerateKeyPair
-from Exercises.week3.globalState import State
+from KDCoin.merkleNode import MerkleNode
+from KDCoin.merkleTree import MerkleTree
+from KDCoin.helperFunctions import simpleLOD
+from KDCoin.preImage import getDigest, findPreimage
+from KDCoin.transaction import Transaction
+from KDCoin.keyPair import GenerateKeyPair
+from KDCoin.globalState import State
 from multiprocessing import Process, Queue
 
 

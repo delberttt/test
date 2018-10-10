@@ -1,4 +1,4 @@
-from Exercises.week1.keyPair import GenerateKeyPair
+from keyPair import GenerateKeyPair
 
 
 # todo: Idea is for every miner to have its own flask app

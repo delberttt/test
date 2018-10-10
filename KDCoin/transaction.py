@@ -1,5 +1,5 @@
 import json
-from Exercises.week1.keyPair import GenerateKeyPair, signWithPrivateKey, verifyExisting
+from keyPair import GenerateKeyPair, signWithPrivateKey, verifyExisting
 import ecdsa
 
 
