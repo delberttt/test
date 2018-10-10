@@ -1,5 +1,5 @@
-from Exercises.week1.helperFunctions import hashItem
-from Exercises.week1.merkleNode import MerkleNode
+from KDCoin.helperFunctions import hashItem
+from KDCoin.merkleNode import MerkleNode
 
 
 def createNewNode(_merging_node, _incoming_node):

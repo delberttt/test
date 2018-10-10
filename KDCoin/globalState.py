@@ -1,4 +1,4 @@
-from Exercises.week1.helperFunctions import hashItem
+from KDCoin.helperFunctions import hashItem
 
 
 # State is the current global state of the coin

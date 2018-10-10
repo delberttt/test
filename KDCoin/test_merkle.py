@@ -1,6 +1,6 @@
-from Exercises.week1.helperFunctions import generateRandomString
-from Exercises.week1.merkleNode import MerkleNode
-from Exercises.week1.merkleTree import MerkleTree, verify_proof
+from KDCoin.helperFunctions import generateRandomString
+from KDCoin.merkleNode import MerkleNode
+from KDCoin.merkleTree import MerkleTree, verify_proof
 import json
 import time
 

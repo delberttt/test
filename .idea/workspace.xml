@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6de4882-100f-4c57-9f41-edf9a7839e00" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e6de4882-100f-4c57-9f41-edf9a7839e00" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +17,7 @@
             <entry file="file://$PROJECT_DIR$/Exercises/week3/miner.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="399">
-                  <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+                  <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -28,8 +26,8 @@
           <file leaf-file-name="block.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Exercises/week2/block.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="447">
-                  <caret line="47" column="52" lean-forward="false" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+                <state relative-caret-position="315">
+                  <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -41,18 +39,6 @@
                 <state relative-caret-position="1716">
                   <caret line="78" column="1" lean-forward="false" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MinerApp.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Exercises/week4/MinerApp.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1606">
-                  <caret line="73" column="46" lean-forward="false" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
-                  <folding>
-                    <element signature="e#0#32#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -259,46 +245,6 @@
               <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
               <item name="Exercises" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="Exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="week1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="Exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="week2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="Exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="week3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="Exercises" type="462c0819:PsiDirectoryNode" />
-              <item name="week4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="Lectures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="teaching" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SUTD_Blockchain_50.037" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SUTD_Blockchain_50.037" type="462c0819:PsiDirectoryNode" />
-              <item name="teaching" type="462c0819:PsiDirectoryNode" />
-              <item name="2018_50.037-Blockchain-Technology" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -312,17 +258,17 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Lectures" />
+      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week4" />
+      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week1" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises" />
       <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Lectures" />
       <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week3" />
       <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week1" />
       <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week2" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Lectures" />
-      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week4" />
-      <recent name="D:\desktopStorage\school\SUTD_Blockchain_50.037\Exercises\week1" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -679,13 +625,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercises/week3/question1.py" />
-    <entry file="file://$PROJECT_DIR$/Exercises/week1/question1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Exercises/week1/question2.py" />
     <entry file="file://$PROJECT_DIR$/Exercises/week1/preImage.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -833,9 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1606">
           <caret line="73" column="46" lean-forward="false" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -850,15 +786,23 @@
     <entry file="file://$PROJECT_DIR$/Exercises/week3/miner.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercises/week1/question1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercises/week2/block.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="47" column="52" lean-forward="false" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+        <state relative-caret-position="315">
+          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
           <folding />
         </state>
       </provider>

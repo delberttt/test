@@ -1,5 +1,5 @@
 import json
-from Exercises.week1.helperFunctions import hashItem
+from KDCoin.helperFunctions import hashItem
 
 
 ############

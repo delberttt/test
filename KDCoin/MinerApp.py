@@ -1,7 +1,7 @@
 from flask import Flask, request
-from Exercises.week4 import handlers
-from Exercises.week3 import miner
-from Exercises.week1 import keyPair
+from KDCoin import handlers
+from KDCoin import miner
+from KDCoin import keyPair
 
 import ecdsa
 
