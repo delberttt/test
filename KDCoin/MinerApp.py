@@ -38,10 +38,11 @@ def homePage():
 @app.route('/login', methods=['POST'])
 def loginAPI():
     pub_hex = request.values.get("pub_key")
+    import pdb;pdb.set_trace()
     pub_key = ecdsa.SigningKey(bytes.fromhex(pub_hex))
     internal_storage["Public_key"] = pub_key
 
-    priv_hex = request.values.get("pub_key")
+    priv_hex = request.values.get("priv_key")
     priv_key = ecdsa.VerifyingKey(bytes.fromhex(priv_hex))
     internal_storage["Private_key"] = priv_key
 
