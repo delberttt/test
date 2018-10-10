@@ -1,4 +1,4 @@
-import Flask, request
+from flask import Flask, request
 import handlers
 import miner
 import keyPair
