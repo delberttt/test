@@ -22,12 +22,13 @@ def homePage():
     if internal_storage["Public_key"] is None:
         welcome = "Please log in:"
     else:
+        # import pdb;pdb.set_trace()
         welcome = "Welcome to KDCoin!<br>" \
                "Statistics:<br><br>" \
                "Currently logged in as: {}<br>" \
                "Neighbour nodes registered: {}<br>" \
                "".format(
-            internal_storage["Public_key"].to_string().hex(),
+            internal_storage["Public_key"],
             internal_storage["Neighbour_nodes"])
 
     loginPage = open("Mainpage.html").read()
@@ -37,13 +38,13 @@ def homePage():
 
 @app.route('/login', methods=['POST'])
 def loginAPI():
+    global internal_storage
     pub_hex = request.values.get("pub_key")
-    import pdb;pdb.set_trace()
-    pub_key = ecdsa.SigningKey(bytes.fromhex(pub_hex))
+    pub_key = pub_hex #Might want to change it to a key object in the future
     internal_storage["Public_key"] = pub_key
 
     priv_hex = request.values.get("priv_key")
-    priv_key = ecdsa.VerifyingKey(bytes.fromhex(priv_hex))
+    priv_key = priv_hex #Might want to change it to a key object in the future
     internal_storage["Private_key"] = priv_key
 
     internal_storage["User"] = miner.Miner.new(internal_storage["Public_key"])
@@ -54,6 +55,7 @@ def loginAPI():
 
 @app.route('/new')
 def newUser():
+    global internal_storage
     priv, pub = keyPair.GenerateKeyPair()
     internal_storage["Private_key"] = priv
     internal_storage["Public_key"] = pub
