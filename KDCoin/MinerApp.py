@@ -22,7 +22,6 @@ def homePage():
     if internal_storage["Public_key"] is None:
         welcome = "Please log in:"
     else:
-        # import pdb;pdb.set_trace()
         welcome = "Welcome to KDCoin!<br>" \
                "Statistics:<br><br>" \
                "Currently logged in as: {}<br>" \
@@ -57,13 +56,18 @@ def loginAPI():
 def newUser():
     global internal_storage
     priv, pub = keyPair.GenerateKeyPair()
-    internal_storage["Private_key"] = priv
-    internal_storage["Public_key"] = pub
+    internal_storage["Private_key"] = priv.to_string().hex()
+    internal_storage["Public_key"] = pub.to_string().hex()
 
-    return "Public Key: {}<br>" \
-           "Private Key: {}<br>" \
-           "Please save these 2 (They are unrecoverable)".\
-        format(pub.to_string().hex(), priv.to_string().hex())
+    newUser = open("Newuser.html").read()
+
+    info = "Public Key: {}<br>" \
+    "Private Key: {}<br>" \
+    "Please save these 2 (They are unrecoverable)".\
+    format(pub.to_string().hex(), priv.to_string().hex())
+
+
+    return info + newUser
 
 
 @app.route('/blockchain')
