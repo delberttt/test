@@ -27,7 +27,7 @@ def homePage():
                "Currently logged in as: {}<br>" \
                "Neighbour nodes registered: {}<br>" \
                "".format(
-            internal_storage["Public_key"].to_string().hex(),
+            internal_storage["Public_key"],
             internal_storage["Neighbour_nodes"])
 
     loginPage = open("Mainpage.html").read()
@@ -37,13 +37,13 @@ def homePage():
 
 @app.route('/login', methods=['POST'])
 def loginAPI():
+    global internal_storage
     pub_hex = request.values.get("pub_key")
-    import pdb;pdb.set_trace()
-    pub_key = ecdsa.SigningKey(bytes.fromhex(pub_hex))
+    pub_key = pub_hex #Might want to change it to a key object in the future
     internal_storage["Public_key"] = pub_key
 
     priv_hex = request.values.get("priv_key")
-    priv_key = ecdsa.VerifyingKey(bytes.fromhex(priv_hex))
+    priv_key = priv_hex #Might want to change it to a key object in the future
     internal_storage["Private_key"] = priv_key
 
     internal_storage["User"] = miner.Miner.new(internal_storage["Public_key"])
@@ -54,14 +54,20 @@ def loginAPI():
 
 @app.route('/new')
 def newUser():
+    global internal_storage
     priv, pub = keyPair.GenerateKeyPair()
-    internal_storage["Private_key"] = priv
-    internal_storage["Public_key"] = pub
+    internal_storage["Private_key"] = priv.to_string().hex()
+    internal_storage["Public_key"] = pub.to_string().hex()
 
-    return "Public Key: {}<br>" \
-           "Private Key: {}<br>" \
-           "Please save these 2 (They are unrecoverable)".\
-        format(pub.to_string().hex(), priv.to_string().hex())
+    newUser = open("Newuser.html").read()
+
+    info = "Public Key: {}<br>" \
+    "Private Key: {}<br>" \
+    "Please save these 2 (They are unrecoverable)".\
+    format(pub.to_string().hex(), priv.to_string().hex())
+
+
+    return info + newUser
 
 
 @app.route('/blockchain')
